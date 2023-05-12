@@ -3,8 +3,8 @@ import java.util.TreeMap;
 import java.util.UUID;
 
 public class SbiBankAccount implements BankAccount{
-    private String accountNumber;
-    private int age;
+    private final String accountNumber;
+    private final int age;
     private int balance;
     private final int minBalance = 500;
     private final TreeMap<Integer, Integer> roiMap;
