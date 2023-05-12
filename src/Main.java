@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        HDFCBankAccount h1 = new HDFCBankAccount(150,55);
+        HDFCBankAccount h1 = new HDFCBankAccount(150);
         int ans = h1.getRoi();
         System.out.println(ans);
         h1.addMoney(1000);
@@ -11,7 +11,7 @@ public class Main {
         System.out.println(h1.withdrewMoney(1000));
         System.out.println(h1.getBalance());
 
-        SbiBankAccount s1 = new SbiBankAccount(500,58);
+        SbiBankAccount s1 = new SbiBankAccount(500,61);
         int ans1 = s1.getRoi();
         System.out.println(ans1);
         s1.addMoney(1000);

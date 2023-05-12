@@ -1,15 +1,31 @@
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
 
 public class SbiBankAccount implements BankAccount{
     private String accountNumber;
     private int age;
     private int balance;
+    private final int minBalance = 500;
+    private final TreeMap<Integer, Integer> roiMap;
+    {
+        this.roiMap = new TreeMap<>();
+        roiMap.put(3, 18);
+        roiMap.put(4, 25);
+        roiMap.put(5, 40);
+        roiMap.put(6, 60);
+    }
     private int roi;
     public SbiBankAccount(int balance, int age) {
         this.balance = balance;
         this.accountNumber = String.valueOf(UUID.randomUUID());
         this.age = age;
-        setRoiBasedOnAge();
+
+        if(age > 60) {
+            roi = 7;
+        } else {
+            setRoiBasedOnAge();
+        }
     }
 
     public String getAccountNumber() {
@@ -32,26 +48,18 @@ public class SbiBankAccount implements BankAccount{
         this.balance = balance;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     private void setRoiBasedOnAge() {
-        if(age <= 18) {
-            roi = 3;
-        } else if(age <= 25){
-            roi = 4;
-        } else if(age <= 40){
-            roi = 5;
-        } else roi = 6;
+        for(Map.Entry entry : roiMap.entrySet()) {
+            int key = (int) entry.getKey();
+            int value = (int) entry.getValue();
+            if(age <= value) {
+                roi = key;
+            }
+        }
     }
     @Override
     public Boolean withdrewMoney(int money) {
-        if((this.balance - 500) >= money) {
+        if((this.balance - money) >= minBalance) {
             this.balance = this.balance - money;
             return true;
         }

@@ -1,13 +1,13 @@
 import java.util.UUID;
 
 public class HDFCBankAccount implements BankAccount{
-    private String accountNumber;
+    private final String accountNumber;
     private int balance;
-    private int roi; // 5% -> 5
+    private final int roi; // 5% -> 5
     public HDFCBankAccount(int balance) {
         this.balance = balance;
         this.accountNumber = String.valueOf(UUID.randomUUID());
-        this.roi = 5;
+        this.roi = 5; // By default
     }
 
     public String getAccountNumber() {
@@ -18,10 +18,6 @@ public class HDFCBankAccount implements BankAccount{
         return roi;
     }
 
-    public void setRoi(int roi) {
-        this.roi = roi;
-    }
-
     public HDFCBankAccount(int balance, int roi) {
         this.balance = balance;
         this.accountNumber = String.valueOf(UUID.randomUUID());
@@ -30,10 +26,6 @@ public class HDFCBankAccount implements BankAccount{
 
     public int getBalance() {
         return balance;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
     }
 
     @Override
